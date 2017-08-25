@@ -5,7 +5,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<title>向君</title>
+		<title>女神</title>
 		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
 		<link rel="stylesheet" type="text/css" href="css/test.css"/>
 	</head>
@@ -14,49 +14,19 @@
 			<h3>这是我女神</h3>
 		</header>
 		<section id="section">
-			<ul>
-				<li>
-					<dl>
-						<dt><img src="img/xu3.JPEG"/></dt>
-						<dd>吼吼吼吼吼吼好漂亮</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><img src="img/xu1.JPG"/></dt>
-						<dd>女神在健身</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><img src="img/xu2.JPEG"/></dt>
-						<dd>女神在秀胸</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><img src="img/xu5.JPEG"/></dt>
-						<dd>女神在浴缸里</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><img src="img/xu4.JPEG"/></dt>
-						<dd>女神在秀胸</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><img src="img/xu6.JPEG"/></dt>
-						<dd>女神的自拍</dd>
-					</dl>
-				</li>
-				<!--<li>
-					<dl>
-						<dt><img src="img/xu.JPEG"/></dt>
-						<dd>涂了口红的女神</dd>
-					</dl>
-				</li>-->
+			<ul class="html">
+				<script type="text/html" id="tpl">
+					<%if(result){%>
+						<%for(var i=0;i<result.length;i++){%>
+							<li>
+								<dl>
+									<dt><img src="<%=result[i].pic_url%>"/></dt>
+									<dd><%=result[i].pic_name%></dd>
+								</dl>
+							</li>
+						<%}%>
+					<%}%>
+				</script>
 			</ul>
 		</section>
 		<footer id="footer">
@@ -64,9 +34,29 @@
 		</footer>
 		<!--=====-->
 		<script src="js/jquery-2.1.0.js"></script>
-		<!--==引入rem==-->
+		<script src="js/rem.min.js"></script>
+		<script src="js/template.min.js"></script>
 		<script type="text/javascript">
-			!function(win){function resize(){var domWidth=domEle.getBoundingClientRect().width;if(domWidth/v>540){domWidth=540*v}win.rem=domWidth/7.5;domEle.style.fontSize=win.rem+"px"}var v,initial_scale,timeCode,dom=win.document,domEle=dom.documentElement,viewport=dom.querySelector('meta[name="viewport"]'),flexible=dom.querySelector('meta[name="flexible"]');if(viewport){var o=viewport.getAttribute("content").match(/initial\-scale=(["']?)([\d\.]+)\1?/);if(o){initial_scale=parseFloat(o[2]);v=parseInt(1/initial_scale)}}else{if(flexible){var o=flexible.getAttribute("content").match(/initial\-dpr=(["']?)([\d\.]+)\1?/);if(o){v=parseFloat(o[2]);initial_scale=parseFloat((1/v).toFixed(2))}}}if(!v&&!initial_scale){var n=(win.navigator.appVersion.match(/android/gi),win.navigator.appVersion.match(/iphone/gi));v=win.devicePixelRatio;v=n?v>=3?3:v>=2?2:1:1,initial_scale=1/v}if(domEle.setAttribute("data-dpr",v),!viewport){if(viewport=dom.createElement("meta"),viewport.setAttribute("name","viewport"),viewport.setAttribute("content","initial-scale="+initial_scale+", maximum-scale="+initial_scale+", minimum-scale="+initial_scale+", user-scalable=no"),domEle.firstElementChild){domEle.firstElementChild.appendChild(viewport)}else{var m=dom.createElement("div");m.appendChild(viewport),dom.write(m.innerHTML)}}win.dpr=v;win.addEventListener("resize",function(){clearTimeout(timeCode),timeCode=setTimeout(resize,300)},false);win.addEventListener("pageshow",function(b){b.persisted&&(clearTimeout(timeCode),timeCode=setTimeout(resize,300))},false);resize()}(window);
+			$(function(){
+				$.ajax({
+					type: "get",
+					url: "json/test.json",
+					data: {
+						flag: "wap"
+					},
+					dataType: "json",
+					success: function(data) {
+						if(data&&data.result){
+							console.log();
+							
+							var html = template('tpl',data);
+							$('.html').html(html);
+			
+						}
+						
+					}
+				});
+			});
 		</script>
 	</body>
 </html>
