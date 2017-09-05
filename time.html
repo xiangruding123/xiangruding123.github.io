@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1">
+	    <meta http-eqiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	    <!--如果IE用户安装了Chrome Frame插件，则使用这个插件渲染页面，否则用IE最新的、最好的引擎来渲染页面-->
+	    <meta content="yes" name="apple-mobile-web-app-capable">
+	    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+	    <meta content="telephone=no" name="format-detection">
+		<title>惊喜互动</title>
+		<!-----引入css----->
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		
+		<title>time月日</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//获取当前时间
+//			getNowFormatDate();
+//			function getNowFormatDate() {
+//			    var date = new Date();
+//			    var seperator1 = "-";
+//			    var seperator2 = ":";
+//			    var month = date.getMonth() + 1;
+//			    var strDate = date.getDate();
+//			    if (month >= 1 && month <= 9) {
+//			        month = "0" + month;
+//			    }
+//			    if (strDate >= 0 && strDate <= 9) {
+//			        strDate = "0" + strDate;
+//			    }
+//			    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+//			            + " " + date.getHours() + seperator2 + date.getMinutes()
+//			            + seperator2 + date.getSeconds();
+//			            console.log(currentdate);
+//			    return currentdate;
+//			}
+			
+			//========================
+			getTime();
+			function getTime() {
+			    var date = new Date();
+			    var month = date.getMonth() + 1;
+			    var strDate = date.getDate();
+			    if (strDate >= 0 && strDate <= 9) {
+			        strDate = "0" + strDate;
+			    }
+			    var currentdate = month + "月" + strDate + "日";
+			    console.log(currentdate);
+			    return currentdate;
+			}
+			
+		</script>
+	</body>
+</html>
